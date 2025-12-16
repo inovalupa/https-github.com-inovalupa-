@@ -221,7 +221,7 @@ const App: React.FC = () => {
                     <span className="text-[10px] font-bold uppercase tracking-wider">Oportunidade</span>
                   </div>
                   <p className="text-xs font-bold text-brand-blue">Potencial Upsell: Gigante Black</p>
-                  <p className="text-[11px] text-gray-500 mt-1">150 torcedores do plano Ouro atingiram score de engajamento > 90%.</p>
+                  <p className="text-[11px] text-gray-500 mt-1">150 torcedores do plano Ouro atingiram score de engajamento {" > "} 90%.</p>
                   <button className="mt-3 text-[10px] font-bold text-blue-600 uppercase">Ver Torcedores</button>
                 </div>
 
