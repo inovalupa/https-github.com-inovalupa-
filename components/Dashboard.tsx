@@ -4,8 +4,8 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, 
   LineChart, Line, PieChart, Pie, Cell, Legend, AreaChart, Area
 } from 'recharts';
-import { DASHBOARD_STATS_DATA, PRODUCT_SALES_DISTRIBUTION, APP_USAGE_STATS } from '../constants';
-import { Users, TrendingUp, TrendingDown, DollarSign, ShoppingBag, Smartphone, Sparkles } from 'lucide-react';
+import { DASHBOARD_STATS_DATA, PRODUCT_SALES_DISTRIBUTION, APP_USAGE_STATS, CHURN_REASONS_DATA } from '../constants';
+import { Users, TrendingUp, TrendingDown, DollarSign, ShoppingBag, Smartphone, Sparkles, BrainCircuit } from 'lucide-react';
 
 const Dashboard: React.FC = () => {
   return (
@@ -13,7 +13,7 @@ const Dashboard: React.FC = () => {
       {/* KPI Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 relative overflow-hidden group hover:shadow-md transition-all">
-          <div className="absolute top-0 right-0 w-16 h-16 bg-brand-blue/5 rounded-bl-full transition-all group-hover:bg-brand-blue/10"></div>
+          <div className="absolute top-0 right-0 w-16 h-16 bg-brand-blue/5 rounded-bl-full"></div>
           <div className="flex items-center justify-between relative z-10">
             <div>
               <p className="text-sm text-gray-500 mb-1 font-medium">Receita Mensal</p>
@@ -29,7 +29,7 @@ const Dashboard: React.FC = () => {
         </div>
 
         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 relative overflow-hidden group hover:shadow-md transition-all">
-          <div className="absolute top-0 right-0 w-16 h-16 bg-brand-orange/5 rounded-bl-full transition-all group-hover:bg-brand-orange/10"></div>
+          <div className="absolute top-0 right-0 w-16 h-16 bg-brand-orange/5 rounded-bl-full"></div>
           <div className="flex items-center justify-between relative z-10">
             <div>
               <p className="text-sm text-gray-500 mb-1 font-medium">Sócios Ativos</p>
@@ -81,7 +81,7 @@ const Dashboard: React.FC = () => {
         {/* Forecast Revenue Chart */}
         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-bold text-brand-blue">Projeção de Receita (IA)</h3>
+            <h3 className="text-lg font-bold text-brand-blue">Projeção de Receita Preditiva</h3>
             <span className="text-[10px] uppercase font-bold bg-brand-orange/10 text-brand-orange px-2 py-1 rounded">Vasco Data Analytics</span>
           </div>
           <div className="h-64 w-full">
@@ -105,27 +105,34 @@ const Dashboard: React.FC = () => {
               </AreaChart>
             </ResponsiveContainer>
           </div>
-          <p className="text-[11px] text-gray-400 mt-2 italic text-center">*Dados de Ago/Set baseados em sazonalidade histórica e IA.</p>
+          <p className="text-[11px] text-gray-400 mt-2 italic text-center">*Projeção de Agosto e Setembro via IA.</p>
         </div>
 
-        {/* Churn Risk Evolution */}
+        {/* Churn Reasons (IA Insights) */}
         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-          <h3 className="text-lg font-bold text-brand-blue mb-4">Evolução do Risco de Churn</h3>
+          <div className="flex items-center gap-2 mb-4">
+            <BrainCircuit size={20} className="text-brand-orange" />
+            <h3 className="text-lg font-bold text-brand-blue">Por que eles saem? (IA Insights)</h3>
+          </div>
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={DASHBOARD_STATS_DATA}>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E7EB" />
-                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: '#6B7280', fontSize: 12}} />
-                <YAxis axisLine={false} tickLine={false} tick={{fill: '#6B7280', fontSize: 12}} />
-                <Tooltip contentStyle={{ borderRadius: '12px', border: 'none' }} />
-                <Line 
-                  type="monotone" 
-                  dataKey="churn" 
-                  stroke="#FF6B00" 
-                  strokeWidth={3} 
-                  dot={{ r: 4, fill: '#FF6B00', strokeWidth: 0 }} 
-                />
-              </LineChart>
+              <PieChart>
+                <Pie
+                  data={CHURN_REASONS_DATA}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={60}
+                  outerRadius={80}
+                  paddingAngle={5}
+                  dataKey="value"
+                >
+                  {CHURN_REASONS_DATA.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Pie>
+                <Tooltip />
+                <Legend verticalAlign="middle" align="right" layout="vertical" />
+              </PieChart>
             </ResponsiveContainer>
           </div>
         </div>
@@ -136,27 +143,17 @@ const Dashboard: React.FC = () => {
         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
           <div className="flex items-center gap-2 mb-6">
              <div className="p-2 bg-blue-50 rounded-lg text-brand-blue"><ShoppingBag size={20} /></div>
-             <h3 className="text-lg font-bold text-brand-blue">Participação por Produto</h3>
+             <h3 className="text-lg font-bold text-brand-blue">Receita por Categoria de Produto</h3>
           </div>
-          <div className="h-64 w-full flex items-center justify-center">
+          <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie
-                  data={PRODUCT_SALES_DISTRIBUTION}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={60}
-                  outerRadius={80}
-                  paddingAngle={5}
-                  dataKey="value"
-                >
-                  {PRODUCT_SALES_DISTRIBUTION.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
-                  ))}
-                </Pie>
-                <Tooltip formatter={(value: number) => [`${value}%`, 'Participação']} />
-                <Legend verticalAlign="middle" align="right" layout="vertical" />
-              </PieChart>
+              <BarChart data={PRODUCT_SALES_DISTRIBUTION}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E7EB" />
+                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fontSize: 12}} />
+                <YAxis axisLine={false} tickLine={false} hide />
+                <Tooltip />
+                <Bar dataKey="value" fill="#0B1E3B" radius={[4, 4, 0, 0]} />
+              </BarChart>
             </ResponsiveContainer>
           </div>
         </div>
@@ -164,7 +161,7 @@ const Dashboard: React.FC = () => {
         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
           <div className="flex items-center gap-2 mb-6">
              <div className="p-2 bg-orange-50 rounded-lg text-brand-orange"><Smartphone size={20} /></div>
-             <h3 className="text-lg font-bold text-brand-blue">Engajamento App Oficial</h3>
+             <h3 className="text-lg font-bold text-brand-blue">Adoção de Funcionalidades do App</h3>
           </div>
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
@@ -173,7 +170,7 @@ const Dashboard: React.FC = () => {
                 <XAxis type="number" hide />
                 <YAxis dataKey="feature" type="category" width={120} tick={{fill: '#4B5563', fontSize: 11}} axisLine={false} tickLine={false} />
                 <Tooltip cursor={{fill: '#F9FAFB'}} />
-                <Bar dataKey="users" radius={[0, 4, 4, 0]} fill="#0B1E3B" />
+                <Bar dataKey="users" radius={[0, 4, 4, 0]} fill="#FF6B00" />
               </BarChart>
             </ResponsiveContainer>
           </div>

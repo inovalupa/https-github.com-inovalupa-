@@ -5,13 +5,8 @@ import { GoogleGenAI } from "@google/genai";
  * Função principal para gerar insights estratégicos baseados em dados.
  */
 export const generateInsight = async (prompt: string, contextData: string): Promise<string> => {
-  const apiKey = process.env.API_KEY;
-  
-  if (!apiKey) {
-    return "### ⚠️ Chave de API Não Encontrada\n\nPor favor, garanta que a `API_KEY` esteja configurada.";
-  }
-
-  const ai = new GoogleGenAI({ apiKey });
+  // @fix Initialize GoogleGenAI with process.env.API_KEY directly as per guidelines
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
   
   const systemInstruction = `
     Você é a "Data Fan AI", uma consultora estratégica especialista em marketing esportivo e análise de dados para o Club de Regatas Vasco da Gama.
@@ -37,6 +32,7 @@ export const generateInsight = async (prompt: string, contextData: string): Prom
       }
     });
 
+    // @fix Extract text output using the .text property (not a method)
     return response.text || "Desculpe, não consegui processar essa análise agora.";
   } catch (error) {
     console.error("Gemini Error:", error);
@@ -45,10 +41,8 @@ export const generateInsight = async (prompt: string, contextData: string): Prom
 };
 
 export const generateCampaignIdea = async (targetSegment: string): Promise<string> => {
-  const apiKey = process.env.API_KEY;
-  if (!apiKey) return "API_KEY ausente.";
-
-  const ai = new GoogleGenAI({ apiKey });
+  // @fix Initialize GoogleGenAI with process.env.API_KEY directly as per guidelines
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
   
   try {
     const response = await ai.models.generateContent({
@@ -59,6 +53,7 @@ export const generateCampaignIdea = async (targetSegment: string): Promise<strin
         temperature: 0.9,
       }
     });
+    // @fix Extract text output using the .text property
     return response.text || "Erro ao gerar campanha.";
   } catch (error) {
     return "Falha na conexão com a IA para geração de campanha.";

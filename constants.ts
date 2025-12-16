@@ -64,29 +64,27 @@ export const MOCK_FANS: Fan[] = [
     lastInteraction: '10 dias atrás',
     transactions: [MOCK_TRANSACTIONS[3]],
     interests: ['Setor Social', 'Renovação']
-  },
-  {
-    id: '5',
-    name: 'Lucas Barreira',
-    email: 'lucas.barreira@email.com',
-    avatar: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150&h=150&fit=crop',
-    status: FanStatus.INACTIVE,
-    segment: 'Almirantinho',
-    ltv: 120.00,
-    engagementScore: 10,
-    churnRisk: RiskLevel.HIGH,
-    lastInteraction: '90 dias atrás',
-    transactions: [],
-    interests: ['Kit Infantil', 'Mascote']
   }
 ];
 
-export const LTV_BY_SEGMENT_DATA = [
-  { name: 'Gigante Black', ltv: 2850, description: 'Premium' },
-  { name: 'Gigante Ouro', ltv: 1600, description: 'Intermediário' },
-  { name: 'Norte a Sul', ltv: 850, description: 'Off-Rio' },
-  { name: 'Camisas Negras', ltv: 500, description: 'Entrada/Social' },
-  { name: 'Almirantinho', ltv: 320, description: 'Kids' },
+export const CHURN_REASONS_DATA = [
+  { name: 'Financeiro', value: 35, color: '#FF6B00' },
+  { name: 'Distância/Acesso', value: 25, color: '#0B1E3B' },
+  { name: 'Falta de Benefícios', value: 20, color: '#4B5563' },
+  { name: 'Insatisfação com Time', value: 15, color: '#9CA3AF' },
+  { name: 'Outros', value: 5, color: '#D1D5DB' },
+];
+
+export const DASHBOARD_STATS_DATA = [
+  { name: 'Jan', revenue: 42000, churn: 2100, forecast: 42000 },
+  { name: 'Fev', revenue: 38000, churn: 1500, forecast: 38000 },
+  { name: 'Mar', revenue: 35000, churn: 4200, forecast: 35000 },
+  { name: 'Abr', revenue: 45000, churn: 2800, forecast: 45000 },
+  { name: 'Mai', revenue: 52000, churn: 2100, forecast: 52000 },
+  { name: 'Jun', revenue: 58000, churn: 1900, forecast: 58000 },
+  { name: 'Jul', revenue: 64900, churn: 1800, forecast: 64900 },
+  { name: 'Ago*', revenue: null, churn: null, forecast: 71000 },
+  { name: 'Set*', revenue: null, churn: null, forecast: 78500 },
 ];
 
 export const PRODUCT_SALES_DISTRIBUTION = [
@@ -128,6 +126,14 @@ export const DEMOGRAPHICS_DATA = {
   ]
 };
 
+export const LTV_BY_SEGMENT_DATA = [
+  { name: 'Gigante Black', ltv: 2850, description: 'Premium' },
+  { name: 'Gigante Ouro', ltv: 1600, description: 'Intermediário' },
+  { name: 'Norte a Sul', ltv: 850, description: 'Off-Rio' },
+  { name: 'Camisas Negras', ltv: 500, description: 'Entrada/Social' },
+  { name: 'Almirantinho', ltv: 320, description: 'Kids' },
+];
+
 export const MOCK_CAMPAIGNS: Campaign[] = [
   {
     id: 'c1',
@@ -153,18 +159,6 @@ export const MOCK_CAMPAIGNS: Campaign[] = [
     conversionRate: 32.0,
     status: 'Completed'
   }
-];
-
-export const DASHBOARD_STATS_DATA = [
-  { name: 'Jan', revenue: 42000, churn: 2100, forecast: 42000 },
-  { name: 'Fev', revenue: 38000, churn: 1500, forecast: 38000 },
-  { name: 'Mar', revenue: 35000, churn: 4200, forecast: 35000 },
-  { name: 'Abr', revenue: 45000, churn: 2800, forecast: 45000 },
-  { name: 'Mai', revenue: 52000, churn: 2100, forecast: 52000 },
-  { name: 'Jun', revenue: 58000, churn: 1900, forecast: 58000 },
-  { name: 'Jul', revenue: 64900, churn: 1800, forecast: 64900 },
-  { name: 'Ago*', revenue: null, churn: null, forecast: 71000 },
-  { name: 'Set*', revenue: null, churn: null, forecast: 78500 },
 ];
 
 export const MOCK_CONNECTORS: Connector[] = [
@@ -202,21 +196,5 @@ export const MOCK_CONNECTORS: Connector[] = [
     icon: 'ShoppingBag',
     status: 'Connected',
     lastSync: '5 min atrás'
-  },
-  {
-    id: 'conn5',
-    name: 'VascoTV / Youtube',
-    description: 'Engajamento com conteúdo digital.',
-    category: 'Social',
-    icon: 'Share2',
-    status: 'Disconnected'
-  },
-  {
-    id: 'conn6',
-    name: 'SAP ERP',
-    description: 'Dados financeiros.',
-    category: 'Pagamentos',
-    icon: 'Landmark',
-    status: 'Error'
   }
 ];

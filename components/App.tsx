@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { 
   LayoutDashboard, Users, Megaphone, MessageSquareText, Menu, 
-  LogOut, Database, UserCircle2, ShieldCheck, Bell 
+  LogOut, Database, UserCircle2, ShieldCheck, Bell, X, AlertCircle, TrendingUp
 } from 'lucide-react';
 import Dashboard from './components/Dashboard';
 import FanBase from './components/FanBase';
@@ -63,6 +63,7 @@ const App: React.FC = () => {
   const [userName, setUserName] = useState<string>('');
   const [currentView, setCurrentView] = useState<View>(View.DASHBOARD);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isNotificationPanelOpen, setIsNotificationPanelOpen] = useState(false);
   
   const handleLogin = (role: UserRole, name: string) => {
     setUserRole(role);
@@ -104,6 +105,7 @@ const App: React.FC = () => {
 
   return (
     <div className="flex h-screen bg-gray-50 overflow-hidden font-sans relative">
+      {/* Sidebar */}
       <aside className={`fixed inset-y-0 left-0 z-40 w-72 bg-brand-dark transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-auto ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="h-full flex flex-col p-8">
           <div className="flex items-center justify-center mb-12">
@@ -143,30 +145,34 @@ const App: React.FC = () => {
         </div>
       </aside>
 
-      <div className="flex-1 flex flex-col overflow-hidden">
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col overflow-hidden relative">
         <header className="bg-white/80 backdrop-blur-md border-b border-gray-100 h-20 flex items-center justify-between px-8 z-30 sticky top-0">
           <div className="flex items-center gap-4">
             <button onClick={() => setIsSidebarOpen(true)} className="lg:hidden text-gray-600 p-2 hover:bg-gray-100 rounded-lg">
               <Menu size={24} />
             </button>
             <h1 className="text-xl font-bold text-brand-blue hidden md:block">
-              {currentView === View.DASHBOARD && "Visão Geral do Clube"}
-              {currentView === View.FANS && "Base Unificada de Torcedores"}
-              {currentView === View.AI_CHAT && "Consultora Data Fan AI"}
-              {currentView === View.CAMPAIGNS && "Studio de Campanhas"}
+              {currentView === View.DASHBOARD && "Visão Geral Estratégica"}
+              {currentView === View.FANS && "Base de Torcedores Unificada"}
+              {currentView === View.AI_CHAT && "Data Fan IA Strategist"}
+              {currentView === View.CAMPAIGNS && "Campaign Studio Pro"}
               {currentView === View.INTEGRATIONS && "Integrações Enterprise"}
               {currentView === View.DEMOGRAPHICS && "Demografia da Torcida"}
             </h1>
           </div>
           
           <div className="flex items-center gap-6">
-            <button className="relative text-gray-400 hover:text-brand-blue transition-colors">
+            <button 
+              onClick={() => setIsNotificationPanelOpen(true)}
+              className="relative text-gray-400 hover:text-brand-blue transition-colors p-2 hover:bg-gray-50 rounded-full"
+            >
               <Bell size={22} />
-              <span className="absolute -top-1 -right-1 w-4 h-4 bg-brand-orange text-white text-[10px] flex items-center justify-center rounded-full font-bold">3</span>
+              <span className="absolute top-1.5 right-1.5 w-4 h-4 bg-brand-orange text-white text-[9px] flex items-center justify-center rounded-full font-bold border-2 border-white">3</span>
             </button>
             <div className="h-8 w-px bg-gray-200 hidden sm:block"></div>
             <div className="flex items-center gap-3">
-              <span className="text-xs font-bold text-gray-500 hidden sm:block">CLUB DE REGATAS VASCO DA GAMA</span>
+              <span className="text-xs font-bold text-gray-500 hidden sm:block">CR VASCO DA GAMA</span>
               <img src="https://upload.wikimedia.org/wikipedia/pt/a/ac/CRVascodaGama.png" alt="Vasco" className="h-10 w-auto drop-shadow-sm" />
             </div>
           </div>
@@ -183,6 +189,54 @@ const App: React.FC = () => {
             {currentView === View.USER_MANAGEMENT && <UserManagement users={users as any} onAddUser={(u: any) => setUsers([...users, u])} onRemoveUser={(un: any) => setUsers(users.filter(u => u.username !== un))} />}
           </div>
         </main>
+
+        {/* Notification Panel Sidebar */}
+        {isNotificationPanelOpen && (
+          <>
+            <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 animate-fade-in" onClick={() => setIsNotificationPanelOpen(false)}></div>
+            <aside className="fixed right-0 inset-y-0 w-80 bg-white shadow-2xl z-50 animate-fade-in border-l border-gray-100 flex flex-col">
+              <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50">
+                <h3 className="font-bold text-brand-blue flex items-center gap-2">
+                   <Bell size={18} className="text-brand-orange" /> Alertas IA
+                </h3>
+                <button onClick={() => setIsNotificationPanelOpen(false)} className="text-gray-400 hover:text-gray-600 p-1">
+                  <X size={20} />
+                </button>
+              </div>
+              <div className="flex-1 overflow-y-auto p-6 space-y-4">
+                <div className="p-4 bg-red-50 rounded-2xl border border-red-100">
+                  <div className="flex items-center gap-2 text-red-600 mb-2">
+                    <AlertCircle size={16} />
+                    <span className="text-[10px] font-bold uppercase tracking-wider">Alto Risco</span>
+                  </div>
+                  <p className="text-xs font-bold text-brand-blue">Segmento Gigante Ouro em declínio</p>
+                  <p className="text-[11px] text-gray-500 mt-1">Aumento de 5% no risco de churn detectado nas últimas 24h.</p>
+                  <button className="mt-3 text-[10px] font-bold text-red-600 uppercase">Criar Ação Agora</button>
+                </div>
+
+                <div className="p-4 bg-blue-50 rounded-2xl border border-blue-100">
+                  <div className="flex items-center gap-2 text-blue-600 mb-2">
+                    {/* @fix Added missing TrendingUp icon to resolve "Cannot find name 'TrendingUp'" error */}
+                    <TrendingUp size={16} />
+                    <span className="text-[10px] font-bold uppercase tracking-wider">Oportunidade</span>
+                  </div>
+                  <p className="text-xs font-bold text-brand-blue">Potencial Upsell: Gigante Black</p>
+                  <p className="text-[11px] text-gray-500 mt-1">150 torcedores do plano Ouro atingiram score de engajamento > 90%.</p>
+                  <button className="mt-3 text-[10px] font-bold text-blue-600 uppercase">Ver Torcedores</button>
+                </div>
+
+                <div className="p-4 bg-gray-50 rounded-2xl border border-gray-100 opacity-60">
+                  <p className="text-[10px] text-gray-400 mb-1">Há 2 horas</p>
+                  <p className="text-xs font-bold text-gray-700">Relatório Semanal Pronto</p>
+                  <p className="text-[11px] text-gray-500 mt-1">A análise de receita do mês de Julho foi processada com sucesso.</p>
+                </div>
+              </div>
+              <div className="p-4 border-t border-gray-100 text-center">
+                <button className="text-xs font-bold text-brand-blue hover:text-brand-orange transition-colors">Limpar Notificações</button>
+              </div>
+            </aside>
+          </>
+        )}
       </div>
     </div>
   );
