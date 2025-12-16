@@ -8,17 +8,22 @@ export const generateInsight = async (prompt: string, contextData: string): Prom
   const apiKey = process.env.API_KEY;
   
   if (!apiKey) {
-    return "### ⚠️ Chave de API Não Encontrada\n\nPara que a IA funcione, você deve adicionar a variável de ambiente no Vercel com o nome exato: **`API_KEY`**.\n\n1. Vá em Settings -> Environment Variables.\n2. Key: `API_KEY`\n3. Value: (Sua chave do Google AI Studio)\n4. Faça um novo Deploy.";
+    return "### ⚠️ Chave de API Não Encontrada\n\nPor favor, garanta que a `API_KEY` esteja configurada.";
   }
 
   const ai = new GoogleGenAI({ apiKey });
   
   const systemInstruction = `
-    Você é a "Data Fan AI", uma consultora estratégica especialista em marketing esportivo para o Club de Regatas Vasco da Gama.
-    Sugerir ações para aumentar receita, reduzir churn e melhorar o engajamento do Sócio Gigante.
-    Use Markdown.
+    Você é a "Data Fan AI", uma consultora estratégica especialista em marketing esportivo e análise de dados para o Club de Regatas Vasco da Gama.
+    Seu objetivo é ajudar gestores a:
+    1. Aumentar a receita direta (loja, ingressos, mensalidades).
+    2. Reduzir o Churn (cancelamento) do Sócio Gigante através de ações preditivas.
+    3. Melhorar o engajamento digital e físico.
+    
+    Responda em Markdown, use negrito para destaques e emojis para facilitar a leitura. 
+    Seja direto e prático.
 
-    Dados do dashboard:
+    DADOS ATUAIS DO DASHBOARD:
     ${contextData}
   `;
 
@@ -32,26 +37,30 @@ export const generateInsight = async (prompt: string, contextData: string): Prom
       }
     });
 
-    return response.text || "Sem resposta da IA.";
+    return response.text || "Desculpe, não consegui processar essa análise agora.";
   } catch (error) {
     console.error("Gemini Error:", error);
-    return "Ocorreu um erro ao consultar a IA. Verifique se a `API_KEY` é válida.";
+    return "Erro de conexão com a Data Fan AI. Verifique os logs do console.";
   }
 };
 
 export const generateCampaignIdea = async (targetSegment: string): Promise<string> => {
   const apiKey = process.env.API_KEY;
-  if (!apiKey) return "Configure a variável `API_KEY` no seu ambiente.";
+  if (!apiKey) return "API_KEY ausente.";
 
   const ai = new GoogleGenAI({ apiKey });
   
   try {
     const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash',
-      contents: `Sugira uma campanha para o segmento: ${targetSegment} (Vasco da Gama).`,
+      contents: `Crie uma campanha de marketing inovadora e personalizada para o segmento de torcedores do Vasco: ${targetSegment}. 
+      Inclua: Título, Oferta Principal, Canal de Comunicação e KPI esperado.`,
+      config: {
+        temperature: 0.9,
+      }
     });
-    return response.text || "Erro ao gerar ideia.";
+    return response.text || "Erro ao gerar campanha.";
   } catch (error) {
-    return "Falha na conexão com Gemini.";
+    return "Falha na conexão com a IA para geração de campanha.";
   }
 };

@@ -13,9 +13,9 @@ export const MOCK_FANS: Fan[] = [
     id: '1',
     name: 'João da Colina',
     email: 'joao.vasco@email.com',
-    avatar: 'https://picsum.photos/id/1005/200/200',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop',
     status: FanStatus.ACTIVE,
-    segment: 'Gigante Black', // Plano mais alto
+    segment: 'Gigante Black',
     ltv: 2450.00,
     engagementScore: 95,
     churnRisk: RiskLevel.LOW,
@@ -27,9 +27,9 @@ export const MOCK_FANS: Fan[] = [
     id: '2',
     name: 'Maria Cruz',
     email: 'maria.cruz@email.com',
-    avatar: 'https://picsum.photos/id/1011/200/200',
+    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop',
     status: FanStatus.CHURN_RISK,
-    segment: 'Norte a Sul', // Off-Rio
+    segment: 'Norte a Sul',
     ltv: 450.00,
     engagementScore: 42,
     churnRisk: RiskLevel.HIGH,
@@ -41,9 +41,9 @@ export const MOCK_FANS: Fan[] = [
     id: '3',
     name: 'Roberto Dinamite Neto',
     email: 'beto.dina@email.com',
-    avatar: 'https://picsum.photos/id/1012/200/200',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop',
     status: FanStatus.ACTIVE,
-    segment: 'Camisas Negras', // Social
+    segment: 'Camisas Negras',
     ltv: 890.00,
     engagementScore: 88,
     churnRisk: RiskLevel.LOW,
@@ -55,7 +55,7 @@ export const MOCK_FANS: Fan[] = [
     id: '4',
     name: 'Juliana Gama',
     email: 'ju.gama@email.com',
-    avatar: 'https://picsum.photos/id/1027/200/200',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop',
     status: FanStatus.ACTIVE,
     segment: 'Gigante Ouro',
     ltv: 1400.00,
@@ -69,9 +69,9 @@ export const MOCK_FANS: Fan[] = [
     id: '5',
     name: 'Lucas Barreira',
     email: 'lucas.barreira@email.com',
-    avatar: 'https://picsum.photos/id/304/200/200',
+    avatar: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150&h=150&fit=crop',
     status: FanStatus.INACTIVE,
-    segment: 'Almirantinho', // Kids
+    segment: 'Almirantinho',
     ltv: 120.00,
     engagementScore: 10,
     churnRisk: RiskLevel.HIGH,
@@ -81,7 +81,6 @@ export const MOCK_FANS: Fan[] = [
   }
 ];
 
-// Dados para o Gráfico de LTV por Segmento
 export const LTV_BY_SEGMENT_DATA = [
   { name: 'Gigante Black', ltv: 2850, description: 'Premium' },
   { name: 'Gigante Ouro', ltv: 1600, description: 'Intermediário' },
@@ -90,15 +89,13 @@ export const LTV_BY_SEGMENT_DATA = [
   { name: 'Almirantinho', ltv: 320, description: 'Kids' },
 ];
 
-// Dados para Venda de Produtos (Share de Receita)
 export const PRODUCT_SALES_DISTRIBUTION = [
-  { name: 'Camisas Kappa', value: 45, color: '#0B1E3B' }, // Azul Vasco
-  { name: 'Ingressos (SJ)', value: 30, color: '#FF6B00' }, // Laranja
-  { name: 'Licenciados', value: 15, color: '#9CA3AF' }, // Cinza
-  { name: 'Experiências', value: 10, color: '#4B5563' }, // Cinza Escuro
+  { name: 'Camisas Kappa', value: 45, color: '#0B1E3B' },
+  { name: 'Ingressos (SJ)', value: 30, color: '#FF6B00' },
+  { name: 'Licenciados', value: 15, color: '#9CA3AF' },
+  { name: 'Experiências', value: 10, color: '#4B5563' },
 ];
 
-// Dados para Uso do App
 export const APP_USAGE_STATS = [
   { feature: 'Carteirinha Digital', users: 15200 },
   { feature: 'Check-in Expresso', users: 12400 },
@@ -107,7 +104,6 @@ export const APP_USAGE_STATS = [
   { feature: 'Quiz Histórico', users: 3100 },
 ];
 
-// --- NOVOS DADOS DEMOGRÁFICOS ---
 export const DEMOGRAPHICS_DATA = {
   gender: [
     { name: 'Masculino', value: 62, color: '#0B1E3B' },
@@ -124,11 +120,11 @@ export const DEMOGRAPHICS_DATA = {
     { name: 'Rio (Capital)', value: 55 },
     { name: 'Grande Rio', value: 20 },
     { name: 'Interior RJ', value: 10 },
-    { name: 'Outros Estados (Off-Rio)', value: 15 }, // Importante para o plano Norte a Sul
+    { name: 'Outros Estados (Off-Rio)', value: 15 },
   ],
   pcd: [
     { name: 'Não PCD', value: 97.5, color: '#E5E7EB' },
-    { name: 'PCD', value: 2.5, color: '#FF6B00' }, // Destaque para inclusão
+    { name: 'PCD', value: 2.5, color: '#FF6B00' },
   ]
 };
 
@@ -160,13 +156,15 @@ export const MOCK_CAMPAIGNS: Campaign[] = [
 ];
 
 export const DASHBOARD_STATS_DATA = [
-  { name: 'Jan', revenue: 42000, churn: 2100 },
-  { name: 'Fev', revenue: 38000, churn: 1500 },
-  { name: 'Mar', revenue: 35000, churn: 4200 }, // Queda pós estadual
-  { name: 'Abr', revenue: 45000, churn: 2800 }, // Início Brasileirão
-  { name: 'Mai', revenue: 52000, churn: 2100 },
-  { name: 'Jun', revenue: 58000, churn: 1900 },
-  { name: 'Jul', revenue: 64900, churn: 1800 }, // Janela de transferências
+  { name: 'Jan', revenue: 42000, churn: 2100, forecast: 42000 },
+  { name: 'Fev', revenue: 38000, churn: 1500, forecast: 38000 },
+  { name: 'Mar', revenue: 35000, churn: 4200, forecast: 35000 },
+  { name: 'Abr', revenue: 45000, churn: 2800, forecast: 45000 },
+  { name: 'Mai', revenue: 52000, churn: 2100, forecast: 52000 },
+  { name: 'Jun', revenue: 58000, churn: 1900, forecast: 58000 },
+  { name: 'Jul', revenue: 64900, churn: 1800, forecast: 64900 },
+  { name: 'Ago*', revenue: null, churn: null, forecast: 71000 },
+  { name: 'Set*', revenue: null, churn: null, forecast: 78500 },
 ];
 
 export const MOCK_CONNECTORS: Connector[] = [
