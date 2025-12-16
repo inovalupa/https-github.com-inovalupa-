@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Fan - Inteligência Artificial para Torcedores</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              brand: {
+                orange: '#FF6B00', // Vibrant Orange from PDF
+                blue: '#0B1E3B',   // Deep Navy from PDF (Slide 13 background)
+                dark: '#051021',   // Darker shade for contrasts
+                light: '#F8FAFC'
+              }
+            },
+            animation: {
+              'bounce-in': 'bounceIn 0.5s cubic-bezier(0.8, 0, 1, 1)',
+              'fade-in': 'fadeIn 0.5s ease-out',
+            },
+            keyframes: {
+              bounceIn: {
+                '0%': { transform: 'translateY(100%) translateX(-50%)', opacity: '0' },
+                '100%': { transform: 'translateY(0) translateX(-50%)', opacity: '1' },
+              },
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #F3F4F6;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "recharts": "https://aistudiocdn.com/recharts@^3.5.1",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "react-markdown": "https://aistudiocdn.com/react-markdown@^10.1.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
