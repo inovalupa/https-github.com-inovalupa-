@@ -4,14 +4,14 @@ import {
   LayoutDashboard, Users, Megaphone, MessageSquareText, Menu, 
   LogOut, Database, UserCircle2, ShieldCheck, Bell, X, AlertCircle, TrendingUp
 } from 'lucide-react';
-import Dashboard from './components/Dashboard';
-import FanBase from './components/FanBase';
-import Campaigns from './components/Campaigns';
-import ChatAssistant from './components/ChatAssistant';
-import Integrations from './components/Integrations';
-import Demographics from './components/Demographics';
-import Login from './components/Login';
-import UserManagement from './components/UserManagement';
+import Dashboard from './Dashboard';
+import FanBase from './FanBase';
+import Campaigns from './Campaigns';
+import ChatAssistant from './ChatAssistant';
+import Integrations from './Integrations';
+import Demographics from './Demographics';
+import Login from './Login';
+import UserManagement from './UserManagement';
 
 enum View {
   DASHBOARD = 'dashboard',
@@ -216,7 +216,6 @@ const App: React.FC = () => {
 
                 <div className="p-4 bg-blue-50 rounded-2xl border border-blue-100">
                   <div className="flex items-center gap-2 text-blue-600 mb-2">
-                    {/* @fix Added missing TrendingUp icon to resolve "Cannot find name 'TrendingUp'" error */}
                     <TrendingUp size={16} />
                     <span className="text-[10px] font-bold uppercase tracking-wider">Oportunidade</span>
                   </div>
