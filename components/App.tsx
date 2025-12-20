@@ -38,7 +38,7 @@ const INITIAL_USERS: SystemUser[] = [
 ];
 
 const DataFanLogo = ({ className = "h-12" }: { className?: string }) => (
-  <svg viewBox="0 0 520 85" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg viewBox="0 0 580 85" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
     {/* Texto Data Fan - Identidade Principal */}
     <text x="0" y="45" fontFamily="Inter, sans-serif" fontWeight="900" fontSize="48" fill="#008037" letterSpacing="-2">Data</text>
     <text x="5" y="75" fontFamily="Inter, sans-serif" fontStyle="italic" fontWeight="600" fontSize="36" fill="white" opacity="0.9" letterSpacing="-1">fan</text>
@@ -46,9 +46,9 @@ const DataFanLogo = ({ className = "h-12" }: { className?: string }) => (
     {/* Separador Vertical Minimalista */}
     <line x1="135" y1="20" x2="135" y2="70" stroke="white" strokeWidth="2" opacity="0.2" />
     
-    {/* Tipografia América Mineiro - Padrão Site Oficial */}
+    {/* Tipografia América Futebol Clube - Padrão Site Oficial */}
     <text x="155" y="48" fontFamily="Inter, sans-serif" fontWeight="900" fontSize="44" fill="white" letterSpacing="-1">AMÉRICA</text>
-    <text x="157" y="76" fontFamily="Inter, sans-serif" fontWeight="700" fontSize="18" fill="#008037" letterSpacing="6">MINEIRO</text>
+    <text x="157" y="76" fontFamily="Inter, sans-serif" fontWeight="700" fontSize="16" fill="#008037" letterSpacing="2">FUTEBOL CLUBE</text>
   </svg>
 );
 
@@ -148,7 +148,7 @@ const App: React.FC = () => {
               <Menu size={24} />
             </button>
             <h1 className="text-xl font-bold text-brand-blue hidden md:block">
-              {currentView === View.DASHBOARD && "Dashboard América Mineiro"}
+              {currentView === View.DASHBOARD && "Dashboard América Futebol Clube"}
               {currentView === View.FANS && "Base de Sócios Onda Verde"}
               {currentView === View.AI_CHAT && "Data Fan IA Coelhão"}
               {currentView === View.CAMPAIGNS && "Campaign Studio Pro"}
@@ -168,7 +168,7 @@ const App: React.FC = () => {
             <div className="h-8 w-px bg-gray-200 hidden sm:block"></div>
             <div className="flex items-center gap-4">
               <div className="text-right">
-                <p className="text-sm font-black text-brand-blue leading-tight uppercase tracking-tighter">AMÉRICA MINEIRO</p>
+                <p className="text-sm font-black text-brand-blue leading-tight uppercase tracking-tighter">AMÉRICA FUTEBOL CLUBE</p>
                 <p className="text-[10px] text-brand-orange font-bold uppercase tracking-[0.2em]">Belo Horizonte, MG</p>
               </div>
             </div>
