@@ -32,28 +32,23 @@ interface SystemUser {
 }
 
 const INITIAL_USERS: SystemUser[] = [
-  { username: 'thadeu corteletti', role: 'EXECUTIVE', displayName: 'Thadeu Corteletti' },
-  { username: 'dan lopes', role: 'MARKETING', displayName: 'Dan Lopes' },
-  { username: 'sysadmin', role: 'SCIENTIST', displayName: 'Engenheiro de Dados' }
+  { username: 'diretoria america', role: 'EXECUTIVE', displayName: 'Diretoria AFC' },
+  { username: 'marketing coelho', role: 'MARKETING', displayName: 'Marketing América' },
+  { username: 'sysadmin', role: 'SCIENTIST', displayName: 'Analista de Dados' }
 ];
 
 const DataFanLogo = ({ className = "h-12" }: { className?: string }) => (
-  <svg viewBox="0 0 280 85" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g>
-      <text x="0" y="48" fontFamily="'Inter', sans-serif" fontWeight="800" fontSize="52" fill="#FF6B00" letterSpacing="-2">Data</text>
-      <text x="25" y="80" fontFamily="'Inter', sans-serif" fontStyle="italic" fontWeight="600" fontSize="42" fill="white" letterSpacing="-1">fan</text>
-    </g>
-    <g transform="translate(145, 5)">
-      <path d="M20 10 H 60 C 105 10 105 75 60 75 H 20 V 10" stroke="#FF6B00" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M45 28 V 58" stroke="#FF6B00" strokeWidth="5" strokeLinecap="round" />
-      <path d="M45 28 H 75" stroke="#FF6B00" strokeWidth="5" strokeLinecap="round" />
-      <circle cx="75" cy="28" r="4" fill="white" stroke="#FF6B00" strokeWidth="2" />
-      <path d="M45 45 H 65" stroke="#FF6B00" strokeWidth="5" strokeLinecap="round" />
-      <circle cx="65" cy="45" r="4" fill="white" stroke="#FF6B00" strokeWidth="2" />
-      <circle cx="105" cy="42.5" r="6" fill="#0B1E3B" stroke="#FF6B00" strokeWidth="3" />
-      <circle cx="20" cy="10" r="5" fill="#FF6B00" />
-      <circle cx="20" cy="75" r="5" fill="#FF6B00" />
-    </g>
+  <svg viewBox="0 0 520 85" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* Texto Data Fan - Identidade Principal */}
+    <text x="0" y="45" fontFamily="Inter, sans-serif" fontWeight="900" fontSize="48" fill="#008037" letterSpacing="-2">Data</text>
+    <text x="5" y="75" fontFamily="Inter, sans-serif" fontStyle="italic" fontWeight="600" fontSize="36" fill="white" opacity="0.9" letterSpacing="-1">fan</text>
+    
+    {/* Separador Vertical Minimalista */}
+    <line x1="135" y1="20" x2="135" y2="70" stroke="white" strokeWidth="2" opacity="0.2" />
+    
+    {/* Tipografia América Mineiro - Padrão Site Oficial */}
+    <text x="155" y="48" fontFamily="Inter, sans-serif" fontWeight="900" fontSize="44" fill="white" letterSpacing="-1">AMÉRICA</text>
+    <text x="157" y="76" fontFamily="Inter, sans-serif" fontWeight="700" fontSize="18" fill="#008037" letterSpacing="6">MINEIRO</text>
   </svg>
 );
 
@@ -106,15 +101,15 @@ const App: React.FC = () => {
   return (
     <div className="flex h-screen bg-gray-50 overflow-hidden font-sans relative">
       {/* Sidebar */}
-      <aside className={`fixed inset-y-0 left-0 z-40 w-72 bg-brand-dark transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-auto ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+      <aside className={`fixed inset-y-0 left-0 z-40 w-72 bg-[#051a0d] transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-auto ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="h-full flex flex-col p-8">
-          <div className="flex items-center justify-center mb-12">
-            <DataFanLogo className="h-14 w-full" />
+          <div className="flex items-center justify-start mb-12">
+            <DataFanLogo className="h-14 w-auto max-w-full" />
           </div>
           <nav className="space-y-3 flex-1">
-            {canAccess(View.DASHBOARD) && <NavItem view={View.DASHBOARD} icon={LayoutDashboard} label="Visão Estratégica" />}
-            {canAccess(View.DEMOGRAPHICS) && <NavItem view={View.DEMOGRAPHICS} icon={UserCircle2} label="Perfil da Torcida" />}
-            {canAccess(View.INTEGRATIONS) && <NavItem view={View.INTEGRATIONS} icon={Database} label={userRole === 'SCIENTIST' ? "Cloudera Hub" : "Data Sources"} />}
+            {canAccess(View.DASHBOARD) && <NavItem view={View.DASHBOARD} icon={LayoutDashboard} label="Dashboard Coelhão" />}
+            {canAccess(View.DEMOGRAPHICS) && <NavItem view={View.DEMOGRAPHICS} icon={UserCircle2} label="Perfil Americano" />}
+            {canAccess(View.INTEGRATIONS) && <NavItem view={View.INTEGRATIONS} icon={Database} label={userRole === 'SCIENTIST' ? "Cloudera Hub" : "Fontes de Dados"} />}
             {canAccess(View.FANS) && <NavItem view={View.FANS} icon={Users} label="Gestão de Sócios" />}
             {canAccess(View.CAMPAIGNS) && <NavItem view={View.CAMPAIGNS} icon={Megaphone} label="Campaign Studio" />}
             {canAccess(View.AI_CHAT) && <NavItem view={View.AI_CHAT} icon={MessageSquareText} label="IA Strategist" />}
@@ -129,7 +124,7 @@ const App: React.FC = () => {
           
           <div className="pt-8 border-t border-white/5">
             <div className="bg-white/5 rounded-2xl p-4 mb-4 flex items-center gap-3">
-               <div className="w-10 h-10 rounded-full border-2 border-brand-orange bg-gray-800 flex items-center justify-center text-white font-bold">
+               <div className="w-10 h-10 rounded-full border-2 border-brand-orange bg-[#008037] flex items-center justify-center text-white font-bold">
                  {userName.charAt(0)}
                </div>
                <div className="overflow-hidden">
@@ -153,12 +148,12 @@ const App: React.FC = () => {
               <Menu size={24} />
             </button>
             <h1 className="text-xl font-bold text-brand-blue hidden md:block">
-              {currentView === View.DASHBOARD && "Visão Geral Estratégica"}
-              {currentView === View.FANS && "Base de Torcedores Unificada"}
-              {currentView === View.AI_CHAT && "Data Fan IA Strategist"}
+              {currentView === View.DASHBOARD && "Dashboard América Mineiro"}
+              {currentView === View.FANS && "Base de Sócios Onda Verde"}
+              {currentView === View.AI_CHAT && "Data Fan IA Coelhão"}
               {currentView === View.CAMPAIGNS && "Campaign Studio Pro"}
-              {currentView === View.INTEGRATIONS && "Integrações Enterprise"}
-              {currentView === View.DEMOGRAPHICS && "Demografia da Torcida"}
+              {currentView === View.INTEGRATIONS && "Hub de Integrações"}
+              {currentView === View.DEMOGRAPHICS && "Demografia Americanista"}
             </h1>
           </div>
           
@@ -171,9 +166,11 @@ const App: React.FC = () => {
               <span className="absolute top-1.5 right-1.5 w-4 h-4 bg-brand-orange text-white text-[9px] flex items-center justify-center rounded-full font-bold border-2 border-white">3</span>
             </button>
             <div className="h-8 w-px bg-gray-200 hidden sm:block"></div>
-            <div className="flex items-center gap-3">
-              <span className="text-xs font-bold text-gray-500 hidden sm:block">CR VASCO DA GAMA</span>
-              <img src="https://upload.wikimedia.org/wikipedia/pt/a/ac/CRVascodaGama.png" alt="Vasco" className="h-10 w-auto drop-shadow-sm" />
+            <div className="flex items-center gap-4">
+              <div className="text-right">
+                <p className="text-sm font-black text-brand-blue leading-tight uppercase tracking-tighter">AMÉRICA MINEIRO</p>
+                <p className="text-[10px] text-brand-orange font-bold uppercase tracking-[0.2em]">Belo Horizonte, MG</p>
+              </div>
             </div>
           </div>
         </header>
@@ -197,7 +194,7 @@ const App: React.FC = () => {
             <aside className="fixed right-0 inset-y-0 w-80 bg-white shadow-2xl z-50 animate-fade-in border-l border-gray-100 flex flex-col">
               <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50">
                 <h3 className="font-bold text-brand-blue flex items-center gap-2">
-                   <Bell size={18} className="text-brand-orange" /> Alertas IA
+                   <Bell size={18} className="text-brand-orange" /> Alertas Coelhão
                 </h3>
                 <button onClick={() => setIsNotificationPanelOpen(false)} className="text-gray-400 hover:text-gray-600 p-1">
                   <X size={20} />
@@ -209,9 +206,9 @@ const App: React.FC = () => {
                     <AlertCircle size={16} />
                     <span className="text-[10px] font-bold uppercase tracking-wider">Alto Risco</span>
                   </div>
-                  <p className="text-xs font-bold text-brand-blue">Segmento Gigante Ouro em declínio</p>
-                  <p className="text-[11px] text-gray-500 mt-1">Aumento de 5% no risco de churn detectado nas últimas 24h.</p>
-                  <button className="mt-3 text-[10px] font-bold text-red-600 uppercase">Criar Ação Agora</button>
+                  <p className="text-xs font-bold text-brand-blue">Segmento Coelhão Black em declínio</p>
+                  <p className="text-[11px] text-gray-500 mt-1">Aumento de 5% no risco de churn detectado no Horto.</p>
+                  <button className="mt-3 text-[10px] font-bold text-red-600 uppercase">Criar Ação</button>
                 </div>
 
                 <div className="p-4 bg-blue-50 rounded-2xl border border-blue-100">
@@ -219,19 +216,10 @@ const App: React.FC = () => {
                     <TrendingUp size={16} />
                     <span className="text-[10px] font-bold uppercase tracking-wider">Oportunidade</span>
                   </div>
-                  <p className="text-xs font-bold text-brand-blue">Potencial Upsell: Gigante Black</p>
-                  <p className="text-[11px] text-gray-500 mt-1">150 torcedores do plano Ouro atingiram score de engajamento {" > "} 90%.</p>
-                  <button className="mt-3 text-[10px] font-bold text-blue-600 uppercase">Ver Torcedores</button>
+                  <p className="text-xs font-bold text-brand-blue">Potencial Upgrade: Sócio Americano</p>
+                  <p className="text-[11px] text-gray-500 mt-1">Torcedores com alta frequência no Independência.</p>
+                  <button className="mt-3 text-[10px] font-bold text-blue-600 uppercase">Ver Lista</button>
                 </div>
-
-                <div className="p-4 bg-gray-50 rounded-2xl border border-gray-100 opacity-60">
-                  <p className="text-[10px] text-gray-400 mb-1">Há 2 horas</p>
-                  <p className="text-xs font-bold text-gray-700">Relatório Semanal Pronto</p>
-                  <p className="text-[11px] text-gray-500 mt-1">A análise de receita do mês de Julho foi processada com sucesso.</p>
-                </div>
-              </div>
-              <div className="p-4 border-t border-gray-100 text-center">
-                <button className="text-xs font-bold text-brand-blue hover:text-brand-orange transition-colors">Limpar Notificações</button>
               </div>
             </aside>
           </>
