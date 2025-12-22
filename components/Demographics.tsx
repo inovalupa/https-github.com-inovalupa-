@@ -46,7 +46,7 @@ const Demographics: React.FC = () => {
             </div>
           </div>
           <div>
-            <p className="text-sm text-gray-500">Fora do Rio (Off-Rio)</p>
+            <p className="text-sm text-gray-500">Fora de BH (Off-BH)</p>
             <h3 className="text-2xl font-bold text-gray-900">15%</h3>
             <p className="text-xs text-gray-400">Plano Norte a Sul</p>
           </div>
